@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="login.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>LOGIN </h1>
+        <a href="register.html" style="text-decoration: none;">Don't have an account?</a>
+        <br>
+        <form method="post" action="login.php" >
+            <input
+                type="email"
+                id="email"
+                name="myEmail"
+                placeholder="Email"
+                class="halfForm"
+                required 
+            />
+            <input
+                type="password"
+                id="password"
+                name="myPassword"
+                placeholder="Password"
+                class="halfForm"
+                required
+            />
+            <br>
+            <select class="halfForm">
+                <option>Admin Login</option>
+                <option name="myAdmin" value="Y">YES</option>
+                <option name="myAdmin" value="N">NO</option>
+            </select>
+            <br>  
+            <button>Submit</button>
+        </form>
+        <div class="forgotPassword">
+            <a href="forgotPassword.php">Forgot Password?</a>
+        </div>
+    </div>
+</body>
+</html>

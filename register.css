@@ -1,0 +1,95 @@
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    padding: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+  }
+  .halfForm{
+    border: 1px solid #150;
+    width: 140px;
+    height: 34px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 100;
+    border-radius: 5px;
+  }
+  
+  .text,input[type=password],input[type=email],input[type=number]{
+    border: 1px solid #150;
+    width: 300px;
+    height: 34px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 100;
+    border-radius: 5px;
+  }
+  
+  button{
+    border: 1px solid #150;
+    text-align: center;
+    height: 34px;
+    outline: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 100;
+    background: #150;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .upload-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #f15ab2ce;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #image-upload {
+    display: none;
+  }
+  label{
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+  .hide {
+    display: none;
+  }
+  .valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+  }
+  .invalid {
+    color: red;
+    margin-left: 0.25rem;
+  }
+  
