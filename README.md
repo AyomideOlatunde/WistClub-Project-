@@ -8,5 +8,5 @@
 ```
         
 ## Overview
-**User Stories</strong>**
+*User Stories*
 <br/> <br/>
