@@ -1,0 +1,40 @@
+body{
+  background-image: url("loginbackground.png");
+  background-size: cover;
+}
+#deletePopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 12px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 15px;
+    padding: 20px;
+    /* border: 1px solid black;  */ 
+}
+  #deletePopup .title {
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  #deletePopup .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #deletePopup .footer button {
+    width: 150px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+  }
