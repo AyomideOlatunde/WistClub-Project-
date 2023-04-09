@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="login.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Conference Info Page</h1>
+        <br><br><br><br><br><br><br><br>
+
+        
+
+        <form id="myForm" action = "conf_reg.php">
+            <label for="select1">Select an option:</label>
+            <select id="select1" name="select1" onchange="updateForm()">
+              <option value="">Select an option</option>
+              <option value="option1">Individual</option>
+              <option value="option2">Presenter</option>
+              <option value="option3">Group</option>
+            </select>
+          
+            <div id="option1Fields" style="display:none">
+            </div>
+          
+            <div id="option2Fields" style="display:none">
+                <label for="file">Presentation slides*:</label>
+                <input type="file" id="file" name="file"><br>
+
+                <label for="title">File name:</label>
+                <input type="text" id="title" name="title"><br>
+
+            </div>
+
+            <div id="option3Fields" style="display:none">
+
+                <form id="registrationForm">
+                    <label for="numUsers">How many people do you want to register?</label>
+                    <input type="number" id="numUsers" name="numUsers" min="2" max="10" required>
+                    <br><br>
+                
+                    <div id="userForms"></div>
+                  </form>
+                
+                  <script>
+
+                    // Get the registration form and user forms container
+                    var registrationForm = document.getElementById("registrationForm");
+                    var userForms = document.getElementById("userForms");
+                
+                    // Add an event listener to the number of users input
+                    document.getElementById("numUsers").addEventListener("change", function() {
+                      // Clear any existing user forms
+                      userForms.innerHTML = "";
+                
+                      // Get the number of users to register
+                      var numUsers = parseInt(document.getElementById("numUsers").value);
+                
+                      // Create a form for each user
+                      for (var i = 0; i < numUsers; i++) {
+                        var userForm = document.createElement("form");
+                        userForm.innerHTML = `
+                          <h2>Attendee ${i+1}</h2>
+                          <label for="name${i}">Name:</label>
+                          <input type="text" id="name${i}" name="name${i}" required>
+                          <br><br>
+                          <label for="email${i}">Email:</label>
+                          <input type="email" id="email${i}" name="email${i}" required>
+                          <br><br>
+                          <label for="password${i}">Grade:</label>
+                          <input type="password" id="password${i}" name="password${i}" required>
+                          <br><br>
+                        `;
+                        userForms.appendChild(userForm);
+                      }
+                    });
+                  </script>
+                
+              </div>
+          
+            <p font-size = 10pt style = "color: red" >Note: you must be logged in to register.</p>
+            <input type="submit" value="Register">
+          </form>
+        
+          <script>
+
+            function updateForm() {
+            var select1Value = document.getElementById("select1").value;
+            var option1Fields = document.getElementById("option1Fields");
+            var option2Fields = document.getElementById("option2Fields");
+            var option3Fields = document.getElementById("option3Fields");
+
+            if (select1Value == "option1") {
+                option1Fields.style.display = "block";
+                option2Fields.style.display = "none";
+                option3Fields.style.display = "none";
+            } else if (select1Value == "option2") {
+                option1Fields.style.display = "none";
+                option2Fields.style.display = "block";
+                option3Fields.style.display = "none";
+            } else if(select1Value == "option3"){
+                option1Fields.style.display = "none";
+                option2Fields.style.display = "none";
+                option3Fields.style.display = "block";
+            }else {
+                option1Fields.style.display = "none";
+                option2Fields.style.display = "none";
+                option3Fields.style.display = "none";
+            }
+            }
+
+
+        </script>
+       
+    </div>
+</body>
+</html>
