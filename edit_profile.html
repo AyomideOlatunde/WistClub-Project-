@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conference Profile Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tinos&display=swap" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+</head>
+<body>
+    <center>
+        <div class="container">
+            <div class="v1_8">
+                <h1>Edit Profile</h1>
+            </div>
+            <div class="v1_5">
+            </div>
+            <div class="v1_9">
+                <form action = "solid2_getInput.php">
+                    <!-- Grabbing new data from user to update their information -->
+                    <br><br><label for="fname">First Name:</label>
+                    <input type="text" id="fname" name="fname" size ="5">
+                    
+                    <label for="lname">Last Name:</label>
+
+                    <input type="text" id="lname" name="lname" size ="5"><br>
+
+                    <br><label for="email">Email:</label>
+                    <input type="text" id="email" name="email" size = "10"><br>
+
+                    <br><label for="phone">Phone no. :</label>
+                    <input type="text" id="phone" name="phone" size = "10">
+
+                    <br><br><label for="school">School Name:</label>
+                    <input type="text" id="school" name="school" size = "15"><br>
+
+                    <br><label for="mailing address">Mailing address:</label>
+                    <input type="text" id="mailing address" name="mailing address">
+
+                    <br><br><label for="city">City: </label>
+                    <input type="text" id="city" name="city" size = "10">
+                    
+                    <!-- Creating drop-down list for the states -->
+                    <label for="state">State:</label>
+                    <select name="state" id="state">
+                        <option value="" selected disabled>Select a state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+
+                    <br><label for="zipcode">Zipcode:</label>
+
+                    <input type="text" id="zipcode" name="zipcode" size ="5">
+
+                    <!-- Creating button to upload file -->
+                    <br><br><label for="files">Files*:</label>
+                    <input type="file" id="files" name="files"><br>
+                    <br><br><button type="update">Update</button>
+                </form>
+            </div>
+        </div>
+    </center>
+</body>
+</html>
