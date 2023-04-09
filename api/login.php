@@ -1,24 +1,26 @@
 <?php
 include("dBConnect.php");
-include("config.php");
+include("../config/config.php");
 session_start();
 // Retrieve the user's login credentials from form input
 $EMAIL = $_POST['myEmail'];
 $PASSWORD = $_POST['myPassword'];
 
-if($_POST['Admin']=='Y'){
+    if($_POST['myAdmin']=='Y'){
         $USER_ROLE='Admin';
     }else{
         $USER_ROLE='Member';
     }
     //Get members information
-    $sql = "SELECT * FROM Members WHERE EMAIL='$EMAIL' AND USER_ROLE='$USER_ROLE'";
-    $result = $conn->query($sql);
-      if (mysqli_error($conn)) {
+    $sql = "SELECT * FROM Members WHERE EMAIL=? AND USER_ROLE=?";
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param("ss", $EMAIL, $USER_ROLE);
+	$stmt->execute();
+	$result = $stmt->get_result();      
+	if (mysqli_error($conn)) {
                 die('Error: ' . mysqli_error($conn));
       }
-
-    //--Results returned at least on entry from the database query--
+	//--Results returned at least on entry from the database query--
      if (mysqli_num_rows($result) > 0) {
         // Retrieve the hashed password from the database record
         $mem_row = mysqli_fetch_assoc($result);
@@ -34,36 +36,41 @@ if($_POST['Admin']=='Y'){
             $result2 = $conn->query($sql2);
             $add_row = mysqli_fetch_assoc($result2);
             
-            //Get Address Details
-            $sql3 = "SELECT * FROM Address_Details WHERE ZIPCODE='".$add_row['ZIPCODE']."'";
-            $result3 = $conn->query($sql3);
-            $addDetails_row = mysqli_fetch_assoc($result3);
-
             // Password is correct, set session variable
             $_SESSION['email'] = $mem_row['EMAIL'];
             $_SESSION['fname'] = $mem_row['F_NAME'];
             $_SESSION['lname'] = $mem_row['L_NAME'];
+	        $_SESSION['profileImage'] = $mem_row['PROFILE_IMAGE'];
             $_SESSION['userRole'] = $mem_row['USER_ROLE'];
             $_SESSION['addressId'] = $mem_row['ADDRESS_ID'];
-            $_SESSION['password'] = $mem_row['PASSWORD'];
+            $_SESSION['phoneno']= $mem_row['PHONE_NO'];
+            $_SESSION['security_pin'] = $mem_row['SECURITY_PIN'];
+            $_SESSION['password'] = $decrypted_password;
             $_SESSION['street'] = $add_row['STREET'];
             $_SESSION['city'] = $add_row['CITY'];
             $_SESSION['zipcode'] = $add_row['ZIPCODE'];
-            $_SESSION['state'] = $addDetails_row['STATE'];
-            
-            // Redirect the user to the home page
-            header("Location: index.php");
+            $_SESSION['state'] = $add_row['STATE'];
+	    
+		
+            if($USER_ROLE=='Admin'){
+             header("Refresh:0; url=../Admin/home.php");
+            }else if($USER_ROLE=='Member'){
+            	header("Refresh:0; url=../index.php");
+            }
         }
         else{
             //write error messages (incorrect password)???
 
             //Redirect back to login
-            header("Refresh:0; url=login.html");
+            $err = "Incorrect Password!";
+    	    header("Location: ../loginM.php?error=$err");
+	    exit;
         }
     }else{
         //write error messages (account doesnt exist)???
 
-        //Redirect back to login
-		header("Refresh:0; url=login.html");
+        $err = "Invalid Email, Please Create an Account!";
+    	header("Location: ../loginM.php?error=$err");
+	exit;    
     }
 ?>

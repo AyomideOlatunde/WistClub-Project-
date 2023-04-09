@@ -1,47 +1,32 @@
-<?php
-    session_start();
-
-    //deactivate session if for some reason there is no session variable
-    if(!$_SESSION['email']){
-        header('Location : index.php'); //redirect to home page
-        die(); //destroy session
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./api/adminValidation.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link  rel="stylesheet" href="register.css">
-    <link  rel="stylesheet" href="profile.css">
     <title>Document</title>
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100"> 
         
-        <form class="shadow w-450 p-3" method="post" action="./api/updateProfile.php" enctype="multipart/form-data">
-            <h2>Profile Info</h2>
+        <form name="register" onsubmit="return validateStaff()" class="shadow w-450 p-3" method="post" action="./api/register.php" enctype="multipart/form-data">
+            <h2>Create Account</h2>
 	    <?php if(isset($_GET['error'])){ ?>
                 <div class="alert alert-danger" role="alert">
                   <?php echo $_GET['error']; ?>
                 </div>
                 <?php } ?>
     
-                <?php if(isset($_GET['success'])){ ?>
-                <div class="alert alert-success" role="alert">
-                  <?php echo $_GET['success']; ?>
-                </div>
-                <?php } 
-            ?>
             <span class="d-flex justify-content-center ">
             <div class="mb-3">
                 <input
                     type="text"
                     id="firstname"
                     name="f_Name"
-                    value="<?php echo $_SESSION['fname']?>"
+                    placeholder="First Name"
                     class="form-control"
                     required
                 />
@@ -51,21 +36,28 @@
                     type="text"
                     id="lastname"
                     name="l_Name"
-                    value="<?php echo $_SESSION['lname']?>"
+                    placeholder="Last Name"
                     class="form-control"
                     required 
                 />
             </div>
         </span>
         <div class="mb-3">
-            <label class="form-control"><?php echo $_SESSION['email']?></label>
+            <input
+                type="text"
+                id="email"
+                name="Email"
+                class="form-control"
+                placeholder="Email"
+                required
+            />
         </div>
         <span class="d-flex justify-content-center ">
         <div class="mb-3">
             <input
                 type="text"
                 class="form-control"
-                value="<?php echo $_SESSION['phoneno']?>"
+                placeholder="phone: ###-###-####"
                 name="Phone"
                 id="phoneno"
                 required
@@ -75,7 +67,7 @@
             <input
                 type="text"
                 class="form-control"
-                value="<?php echo $_SESSION['state']?>"
+                placeholder="State"
                 name="State"
                 id="State"
                 required
@@ -86,7 +78,7 @@
             <input
                 type="text"
                 class="form-control"
-                value="<?php echo $_SESSION['street']?>"
+                placeholder="Street"
                 name="Street"
                 id="street"
                 required
@@ -97,7 +89,7 @@
             <input
                 type="text"
                 class="form-control"
-                value="<?php echo $_SESSION['city']?>"
+                placeholder="City"
                 name="City"
                 id="City"
                 required
@@ -107,7 +99,7 @@
             <input
                 type="text"
                 class="form-control"
-                value="<?php echo $_SESSION['zipcode']?>"
+                placeholder="Zipcode"
                 name="Zipcode"
                 id="Zipcode"
                 required
@@ -119,7 +111,7 @@
             <input
                 type="password"
                 class="form-control"
-                value="<?php echo $_SESSION['password']?>"
+                placeholder="Password"
                 name="Password"
                 id="pwd"
                 required
@@ -129,7 +121,7 @@
                 <input
                     type="password"
                     class="form-control"
-                    value="<?php echo $_SESSION['password']?>"
+                    placeholder="Confirm Password"
                     id="confirmpwd"
                     name="CPassword"
                     required
@@ -141,62 +133,26 @@
                 <input type="file" 
 		           class="form-control"
 		           name="profilePic"/>
-		<img src="ProfileImages/<?=$_SESSION['profileImage']?>"
-                 class="rounded-circle"
-                 style="width: 70px">
-            <input type="text"
-                   hidden="hidden" 
-                   name="old_pp"
-                   value="<?=$_SESSION['profileImage']?>" > 
              </div>
-            <div class="mb-3">
-		<input type="number"
-			class="form-control"
-			name="security_pin"
-			value="<?php echo $_SESSION['security_pin']?>"
-			required/>
-	    </div>
-            <button>Submit</button>
-       </form>
-        <button id="deleteButton" >Delete Account</button>
-
-        <!-- HTML markup for the popup -->
-        <div id="deletePopup">
-            <p class="title" >Are you sure you want to delete your account?</p>
-            <div className="footer">
-                <button id="confirmDelete">Yes</button>
-                <button id="cancelDelete">No</button>
-            </div>
-        </div>
-	
-
-        <!-- JavaScript code to show and hide the popup -->
-        <script>
-            const deleteButton = document.getElementById('deleteButton');
-            const deletePopup = document.getElementById('deletePopup');
-            const confirmDeleteButton = document.getElementById('confirmDelete');
-            const cancelDeleteButton = document.getElementById('cancelDelete');
-	
-            deleteButton.addEventListener('click', () => {
-            deletePopup.style.display = 'block';
-            });
-
-            cancelDeleteButton.addEventListener('click', () => {
-            deletePopup.style.display = 'none';
-            });
-
-            confirmDeleteButton.addEventListener('click', () => {
-            // delete the item here
-            	window.location.href='./api/deleteAccount.php';
-            });
-        </script> 
+              <span class="d-flex justify-content-center ">
+                <div class="mb-3">
+                <select name="Admin" class="form-control" required>
+                    <option>Admin SignUp</option>
+                    <option value="Y">YES</option>
+                    <option value="N">NO</option>
+                </select>
+                </div>
+                <div class="mb-3">
+                
+                <input type="number" 
+		           class="form-control"
+                   	   placeholder="Security Pin"
+		           name="security_pin"/>
+             </div>
+             </span>            <button>Submit</button>
+            <a href="loginM.php" class="link-secondary">Login</a>
+        </form>
+        
     </div>
 </body>
 </html>
-
-		
-        
-        
-        
-        
-        

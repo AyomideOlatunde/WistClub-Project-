@@ -1,3 +1,7 @@
+body{
+  background-image: url("loginbackground.png");
+  background-size: cover;
+}
 .container{
     position: absolute;
     top: 50%;
@@ -23,22 +27,9 @@
     font-weight: 100;
     border-radius: 5px;
   }
-  
-  .text,input[type=password],input[type=email],input[type=number]{
-    border: 1px solid #150;
-    width: 300px;
-    height: 34px;
-    outline: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-weight: 100;
-    border-radius: 5px;
-  }
-  
+    
   button{
-    border: 1px solid #150;
+    border: 1px solid #f15ab2ce;
     text-align: center;
     height: 34px;
     outline: none;
@@ -47,8 +38,8 @@
     margin-bottom: 20px;
     font-size: 15px;
     font-weight: 100;
-    background: #150;
-    color: #fff;
+    background: #f15ab2ce;
+    color: #000;
     cursor: pointer;
     border-radius: 5px;
   }
